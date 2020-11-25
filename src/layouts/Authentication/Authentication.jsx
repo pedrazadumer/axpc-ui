@@ -15,6 +15,7 @@ class Authentication extends Component {
     super(props, state);
     this.state = {
       login: true,
+      companyInfo: null,
     };
     this.switchAuthentication = this.switchAuthentication.bind(this);
   }

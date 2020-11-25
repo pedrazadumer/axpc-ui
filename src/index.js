@@ -32,16 +32,16 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import reducers from './reducers'
 import Authentication from "layouts/Authentication/Authentication";
 import AdminLayout from "layouts/Admin.jsx";
-
 const extension = window.devToolsExtension
 	? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 	: _ => _
 const middleware = applyMiddleware(thunk)
 const store = createStore(reducers, compose(middleware, extension))
 window.store = store
+
 ReactDOM.render(
   <Provider store={store}>
-  <React.Fragment>			
+  <React.Fragment>	
 			<Router>
 				<Switch>
         <Route path="/login" render={props => <Authentication {...props} />} />

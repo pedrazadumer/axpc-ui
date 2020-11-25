@@ -1,20 +1,39 @@
+import { reduxForm, Field, SubmissionError } from "redux-form";
+//import { Row } from 'react-bootstrap'
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form"; //SubmissionError
 import { renderInputComponent } from "helpers/widgets";
 import Button from "components/CustomButton/CustomButton.jsx";
 import { connect } from "react-redux";
-import { Row } from "react-bootstrap";
-import Card from "components/Card/Card.jsx";
-import SimpleSpinner from "components/Spinner/simpleSpinner.js";
+import SimpleSpinner from "components/Spinner/simpleSpinner";
+import Card from "components/Card/Card";
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 class Login extends Component {
   constructor(props, state) {
     super(props, state);
     this.state = { code: null, digit: null, stoploading: true };
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmitLogin = this.onSubmitLogin.bind(this);
   }
-  onSubmit(values) {
+  onSubmitLogin(values) {
     console.log("values", values);
-    console.log("this, props", this.props);
+    return sleep(1000).then(() => {
+      console.log("values", values);
+      // simulate server latency
+      if (values) {
+        if (!["john", "paul", "george", "ringo"].includes(values.username)) {
+          throw new SubmissionError({
+            username: "User does not exist",
+            _error: "Login failed!",
+          });
+        } else if (values.password !== "redux-form") {
+          throw new SubmissionError({
+            password: "Wrong password",
+            _error: "Login failed!",
+          });
+        } else {
+          window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+        }
+      }
+    });
     //this.setState({ stoploading: false });
     /*
     return this.props.login(params).catch(response => {
@@ -34,6 +53,9 @@ class Login extends Component {
   }
   render() {
     const { error, handleSubmit, pristine, submitting, valid } = this.props;
+    console.log("pristine", pristine);
+    console.log("submitting", submitting);
+    console.log("valid", valid);
     return (
       <div
         style={{
@@ -53,7 +75,7 @@ class Login extends Component {
             <form
               id="Login"
               style={{ margin: "10px" }}
-              onSubmit={handleSubmit((values) => this.onSubmit(values))}
+              onSubmit={handleSubmit((values) => this.onSubmitLogin(values))}
             >
               <Field
                 name="username"
@@ -90,6 +112,8 @@ class Login extends Component {
 }
 
 const validate = ({ username, password }) => {
+  console.log("username", username);
+  console.log("password", password);
   const errors = {};
   if (!username) {
     errors.username = "Required";
@@ -105,6 +129,6 @@ const mapDispatchToProps = (dispatch) => ({
   //login: user => dispatch(logon(user)),
 });
 // Decorate with redux-form
-const LoginWithForm = reduxForm({ form: "Login", validate })(Login);
+const LoginWithForm = reduxForm({ form: "Login" })(Login);
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginWithForm);
