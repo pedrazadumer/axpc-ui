@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 import HeaderLogin from "components/Navbars/HeaderLogin";
 import Footer from "components/Footer/Footer";
 import dashboardRoutes from "routes/index.jsx";
+import { Row, Col } from "react-bootstrap";
 //const ClickableField = loadable(() => import('components/ClickableField'))
 class Authentication extends Component {
   constructor(props, state) {
@@ -72,39 +73,67 @@ class Authentication extends Component {
       this.refs.mainPanel.scrollTop = 0;
     }
   }
+  submit = (values) => {
+    // Do something with the form values
+    console.log("registro", values);
+  };
   options() {
-    if (this.state.login)
-      return (
-        <Login
-          key="Login"
-          history={this.props.history}
-          switchAuthentication={this.switchAuthentication}
-          companyInfo={this.state.companyInfo}
-        />
-      );
-    else
-      return (
-        <SignUp
-          key="SignUp"
-          history={this.props.history}
-          showDBSettings={this.showDBSettings}
-          switchAuthentication={this.switchAuthentication}
-        />
-      );
+    // if (this.state.login)
+    return (
+      <div>
+        <Row>
+          <Col md={4}>
+            <Login
+              key="login"
+              history={this.props.history}
+              switchAuthentication={this.switchAuthentication}
+              companyInfo={this.state.companyInfo}
+            />
+          </Col>
+          <Col md={8}>
+            <SignUp
+              key="signup"
+              onSubmit={this.submit}
+              history={this.props.history}
+              showDBSettings={this.showDBSettings}
+              switchAuthentication={this.switchAuthentication}
+            />{" "}
+          </Col>
+        </Row>
+      </div>
+    );
+    /* else
+    return (
+      <SignUp
+        key="SignUp"
+        {...this.props}
+        history={this.props.history}
+        showDBSettings={this.showDBSettings}
+        switchAuthentication={this.switchAuthentication}
+      />
+    );*/
   }
   render() {
     return (
       <div>
         <HeaderLogin
           {...this.props}
-          style={{ backgroundColor: "#3366cc" }}
+          style={{ backgroundColor: "#3366cc", width: "100%" }}
           brandText={this.getBrandText(this.props.location.pathname)}
         />
         <div style={{ marginLeft: "5%" }}>
           <p> Bienvenido a AgroExportaciones para Colombia</p>
         </div>
         {this.options()}
-        <Footer style={{ backgroundColor: "#3366cc" }} />
+        <Footer
+          style={{
+            backgroundColor: "#3366cc",
+            position: "fixed",
+            left: 0,
+            bottom: 0,
+            width: "100%",
+          }}
+        />
       </div>
     );
   }

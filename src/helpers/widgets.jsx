@@ -1,4 +1,5 @@
 import React from "react";
+import "react-widgets/dist/css/react-widgets.css";
 import DropdownList from "react-widgets/lib/DropdownList";
 import SelectList from "react-widgets/lib/SelectList";
 import Multiselect from "react-widgets/lib/Multiselect";
@@ -6,7 +7,7 @@ import DateTimePicker from "react-widgets/lib/DateTimePicker";
 //import moment from "moment";
 //import momentLocaliser from "react-widgets/lib/localizers/moment";
 import { FormGroup, ControlLabel, FormControl } from "react-bootstrap";
-import "react-widgets/dist/css/react-widgets.css";
+
 //import simpleNumberLocalizer from "react-widgets-simple-number";
 //import { NumberPicker } from "react-widgets";
 //simpleNumberLocalizer();
@@ -20,14 +21,17 @@ function FieldGroup({ label, component, ...props }) {
     </FormGroup>
   );
 }
-const renderDropdownList = ({ input, data, valueField, textField }) => (
-  <DropdownList
-    {...input}
-    data={data}
-    valueField={valueField}
-    textField={textField}
-    onChange={input.onChange}
-  />
+const renderDropdownList = ({ input, data, valueField, textField, label }) => (
+  <div>
+    {label && <ControlLabel style={{ color: "#000000" }}>{label}</ControlLabel>}
+    <DropdownList
+      {...input}
+      data={data}
+      valueField={valueField}
+      textField={textField}
+      onChange={input.onChange}
+    />
+  </div>
 );
 
 const renderMultiselect = ({ input, data, valueField, textField }) => (
@@ -54,7 +58,7 @@ const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => (
   />
 );
 const renderInputComponent = function ({
-  input, //: { onChange, value },
+  input,
   className,
   type,
   id,
@@ -66,17 +70,14 @@ const renderInputComponent = function ({
   meta: { touched, error, active },
 }) {
   return (
-    <div>
-      {label && <label style={style}>{label}</label>}
-      <FieldGroup
-        className={className}
+    <div style={{ marginTop: "3px" }}>
+      {label && (
+        <ControlLabel style={{ color: "#000000" }}>{label}</ControlLabel>
+      )}
+      <FormControl
         type={type}
-        id={id}
-        style={style}
-        onChange={onChange}
-        disabled={disabled}
         placeholder={placeholder}
-        //value={input}
+        onChange={input.onChange}
       />
       {touched && error && <span>{error}</span>}
     </div>

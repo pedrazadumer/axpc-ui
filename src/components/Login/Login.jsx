@@ -16,7 +16,6 @@ class Login extends Component {
   onSubmitLogin(values) {
     console.log("values", values);
     return sleep(1000).then(() => {
-      console.log("values", values);
       // simulate server latency
       if (values) {
         if (!["john", "paul", "george", "ringo"].includes(values.username)) {
@@ -30,7 +29,8 @@ class Login extends Component {
             _error: "Login failed!",
           });
         } else {
-          window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+          this.props.history.push("/admin/dashboard");
+          // window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
         }
       }
     });
@@ -45,25 +45,17 @@ class Login extends Component {
           _error: 'Error al ingresar el usuario y/o contraseña!'
         })
       }*/
-    this.props.history.push("/admin/dashboard");
+
     // setTimeout(this.setState({ stoploading: true }), 5000);
-  }
-  setVal(value) {
-    // console.log("setVal", value);
   }
   render() {
     const { error, handleSubmit, pristine, submitting, valid } = this.props;
-    console.log("pristine", pristine);
-    console.log("submitting", submitting);
-    console.log("valid", valid);
+
     return (
       <div
         style={{
-          minHeight: "80%",
-          width: "40%",
-          marginLeft: "10%",
-          marginTop: "10%",
-          marginBottom: "13%",
+          marginTop: "2%",
+          marginLeft: "5%",
         }}
       >
         <SimpleSpinner spin={!this.state.stoploading} />
@@ -73,9 +65,9 @@ class Login extends Component {
           ctTableResponsive
           content={
             <form
-              id="Login"
+              id="login"
               style={{ margin: "10px" }}
-              onSubmit={handleSubmit((values) => this.onSubmitLogin(values))}
+              onSubmit={handleSubmit((val) => this.onSubmitLogin(val))}
             >
               <Field
                 name="username"
@@ -95,14 +87,16 @@ class Login extends Component {
               <Button
                 bsStyle="primary"
                 fill
-                style={{ width: "100%" }}
+                style={{ width: "100%", marginTop: "10px" }}
                 color={"#3366cc"}
-                //disabled={!valid || pristine || submitting}
+                disabled={!valid || pristine || submitting}
                 type="submit"
               >
                 Ingresar
               </Button>
-              <a href="https://uniandes.edu.co/">Olvidó su contraseña?</a>
+              <a style={{ marginTop: "3px" }} href="https://uniandes.edu.co/">
+                Olvidó su contraseña?
+              </a>
             </form>
           }
         ></Card>
@@ -112,8 +106,6 @@ class Login extends Component {
 }
 
 const validate = ({ username, password }) => {
-  console.log("username", username);
-  console.log("password", password);
   const errors = {};
   if (!username) {
     errors.username = "Required";
@@ -129,6 +121,6 @@ const mapDispatchToProps = (dispatch) => ({
   //login: user => dispatch(logon(user)),
 });
 // Decorate with redux-form
-const LoginWithForm = reduxForm({ form: "Login" })(Login);
+const LoginWithForm = reduxForm({ form: "login" })(Login);
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginWithForm);
