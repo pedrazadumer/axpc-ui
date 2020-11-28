@@ -19,7 +19,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
 import AdminNavbarLinks from "../Navbars/AdminNavbarLinks.jsx";
-
+import imagine from "assets/img/sidebar-4.jpg";
 import logo from "assets/img/reactlogo.png";
 
 class Sidebar extends Component {
@@ -41,7 +41,7 @@ class Sidebar extends Component {
   }
   render() {
     const sidebarBackground = {
-      backgroundImage: "url(" + this.props.image + ")",
+      backgroundImage: "url(" + imagine + ")",
     };
     return (
       <div
@@ -54,19 +54,13 @@ class Sidebar extends Component {
           <div className="sidebar-background" style={sidebarBackground} />
         ) : null}
         <div className="logo">
-          <a
-            href="https://www.creative-tim.com?ref=lbd-sidebar"
-            className="simple-text logo-mini"
-          >
+          <a href="" className="simple-text logo-mini">
             <div className="logo-img">
               <img src={logo} alt="logo_image" />
             </div>
           </a>
-          <a
-            href="https://www.creative-tim.com?ref=lbd-sidebar"
-            className="simple-text logo-normal"
-          >
-            Creative Tim
+          <a href="" className="simple-text logo-normal">
+            Agro Exportadores
           </a>
         </div>
         {

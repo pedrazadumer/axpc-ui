@@ -22,129 +22,166 @@ import {
   Col,
   FormGroup,
   ControlLabel,
-  FormControl
+  FormControl,
 } from "react-bootstrap";
-
+import { Field, reduxForm } from "redux-form";
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
-
+import {
+  renderInputComponent,
+  renderSelectList,
+  renderDropdownList,
+} from "helpers/widgets";
 import avatar from "assets/img/faces/face-3.jpg";
-
+const dataIdentificacion = ["Cedula de ciudadania", "Tarjeta de Identidad"];
+const datatipoUser = ["Exportador ", "Comprador"];
 class UserProfile extends Component {
   render() {
+    const { error, handleSubmit, pristine, submitting, valid } = this.props;
     return (
       <div className="content">
-        <Grid fluid>
+        <Grid fluid style={{ marginBottom: "6%" }}>
           <Row>
             <Col md={8}>
               <Card
-                title="Edit Profile"
+                title="Editar mis datos"
                 content={
-                  <form>
-                    <FormInputs
-                      ncols={["col-md-5", "col-md-3", "col-md-4"]}
-                      properties={[
-                        {
-                          label: "Company (disabled)",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Company",
-                          defaultValue: "Creative Code Inc.",
-                          disabled: true
-                        },
-                        {
-                          label: "Username",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Username",
-                          defaultValue: "michael23"
-                        },
-                        {
-                          label: "Email address",
-                          type: "email",
-                          bsClass: "form-control",
-                          placeholder: "Email"
-                        }
-                      ]}
-                    />
-                    <FormInputs
-                      ncols={["col-md-6", "col-md-6"]}
-                      properties={[
-                        {
-                          label: "First name",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "First name",
-                          defaultValue: "Mike"
-                        },
-                        {
-                          label: "Last name",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Last name",
-                          defaultValue: "Andrew"
-                        }
-                      ]}
-                    />
-                    <FormInputs
-                      ncols={["col-md-12"]}
-                      properties={[
-                        {
-                          label: "Adress",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Home Adress",
-                          defaultValue:
-                            "Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                        }
-                      ]}
-                    />
-                    <FormInputs
-                      ncols={["col-md-4", "col-md-4", "col-md-4"]}
-                      properties={[
-                        {
-                          label: "City",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "City",
-                          defaultValue: "Mike"
-                        },
-                        {
-                          label: "Country",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Country",
-                          defaultValue: "Andrew"
-                        },
-                        {
-                          label: "Postal Code",
-                          type: "number",
-                          bsClass: "form-control",
-                          placeholder: "ZIP Code"
-                        }
-                      ]}
-                    />
-
+                  <form
+                    id="signup"
+                    //style={{ margin: "10px" }}
+                    //onSubmit={handleSubmit}
+                  >
                     <Row>
-                      <Col md={12}>
-                        <FormGroup controlId="formControlsTextarea">
-                          <ControlLabel>About Me</ControlLabel>
-                          <FormControl
-                            rows="5"
-                            componentClass="textarea"
-                            bsClass="form-control"
-                            placeholder="Here can be your description"
-                            defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
-                          />
-                        </FormGroup>
+                      <Col md={6}>
+                        <Field
+                          name="firstname"
+                          label="Nombres"
+                          component={renderInputComponent}
+                          type="text"
+                          placeholder="Ingrese su nombre"
+                        />
+                      </Col>
+                      <Col md={6}>
+                        <Field
+                          name="lastname"
+                          label="Apellidos"
+                          component={renderInputComponent}
+                          type="text"
+                          placeholder="Ingrese sus apellidos"
+                        />
                       </Col>
                     </Row>
-                    <Button bsStyle="info" pullRight fill type="submit">
-                      Update Profile
+                    <Row>
+                      <Col md={6}>
+                        <Field
+                          name="celular"
+                          label="Número de celular"
+                          component={renderInputComponent}
+                          type="text"
+                          placeholder="Ingrese su numero celular"
+                        />
+                      </Col>
+                      <Col md={6}>
+                        <Field
+                          name="departamento"
+                          label="Departamento"
+                          component={renderInputComponent}
+                          type="text"
+                          placeholder="Ingrese Departamento"
+                        />{" "}
+                      </Col>{" "}
+                    </Row>
+                    <Row>
+                      <Col md={6}>
+                        <Field
+                          name="ciudad"
+                          label="ciudad"
+                          component={renderInputComponent}
+                          type="text"
+                          placeholder="Ingrese ciudad"
+                        />
+                      </Col>
+                      <Col md={6}>
+                        <Field
+                          name="direccion"
+                          label="Dirección"
+                          component={renderInputComponent}
+                          type="text"
+                          placeholder="Ingrese su dirección"
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={6}>
+                        <Field
+                          name="tipoDoc"
+                          label="Tipo de identifiación"
+                          component={renderDropdownList}
+                          data={dataIdentificacion}
+                        />
+                      </Col>
+                      <Col md={6}>
+                        <Field
+                          name="numDoc"
+                          label="Número de identifiación"
+                          component={renderInputComponent}
+                          type="text"
+                          placeholder="Ingrese su número de identificación"
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={6}>
+                        <Field
+                          name="email"
+                          label="Correo electrónico"
+                          component={renderInputComponent}
+                          type="email"
+                          placeholder="Ingrese sus correo"
+                        />
+                      </Col>
+                      <Col md={6}>
+                        <Field
+                          name="tipoUsuario"
+                          label="Tipo de usuario"
+                          component={renderDropdownList}
+                          data={datatipoUser}
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={6}>
+                        <Field
+                          name="password"
+                          label="Contaseña"
+                          component={renderInputComponent}
+                          type="password"
+                          placeholder="Ingrese nueva contraseña"
+                        />
+                      </Col>
+                      <Col md={6}>
+                        <Field
+                          name="passwordVerif"
+                          label="Confirmar contaseña"
+                          component={renderInputComponent}
+                          type="password"
+                          placeholder="Confirme su contraseña"
+                        />
+                      </Col>
+                    </Row>
+                    {error && <p style={{ marginLeft: "25px" }}>{error}</p>}
+                    <Button
+                      bsStyle="primary"
+                      fill
+                      style={{ width: "100%", marginTop: "10px" }}
+                      color={"#3366cc"}
+                      disabled={!valid || pristine || submitting}
+                      type="submit"
+                    >
+                      Guardar
                     </Button>
-                    <div className="clearfix" />
                   </form>
                 }
               />
@@ -153,15 +190,15 @@ class UserProfile extends Component {
               <UserCard
                 bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
                 avatar={avatar}
-                name="Mike Andrew"
-                userName="michael24"
+                name="Paul Andrew"
+                userName="Paul24"
                 description={
                   <span>
-                    "Lamborghini Mercy
+                    "Productor y
                     <br />
-                    Your chick she so thirsty
+                    Exportador de productos
                     <br />
-                    I'm in that two seat Lambo"
+                    agricolas en Colombia"
                   </span>
                 }
                 socials={
@@ -185,5 +222,10 @@ class UserProfile extends Component {
     );
   }
 }
+
+// Decorate the form component
+UserProfile = reduxForm({
+  form: "userProfile", // a unique name for this form
+})(UserProfile);
 
 export default UserProfile;

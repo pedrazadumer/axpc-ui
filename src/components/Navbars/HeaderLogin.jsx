@@ -48,9 +48,7 @@ class HeaderLogin extends Component {
     return (
       <Navbar fluid style={this.props.style}>
         <Navbar.Header>
-          <Navbar.Brand>
-            <a href="/admin/dashboard">{this.props.brandText}</a>
-          </Navbar.Brand>
+          <img src="../../Images/logoGob.png" height="60px" width="300" />
           <Navbar.Toggle onClick={this.mobileSidebarToggle} />
         </Navbar.Header>
       </Navbar>

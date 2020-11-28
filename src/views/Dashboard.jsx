@@ -32,7 +32,7 @@ import {
   dataBar,
   optionsBar,
   responsiveBar,
-  legendBar
+  legendBar,
 } from "variables/Variables.jsx";
 
 class Dashboard extends Component {
@@ -52,12 +52,18 @@ class Dashboard extends Component {
         <Grid fluid>
           <Row>
             <Col lg={3} sm={6}>
-              <StatsCard
-                bigIcon={<i className="pe-7s-server text-warning" />}
-                statsText="Capacity"
-                statsValue="105GB"
-                statsIcon={<i className="fa fa-refresh" />}
-                statsIconText="Updated now"
+              <Card
+                title="Tasks"
+                category="Backend development"
+                stats="Updated 3 minutes ago"
+                statsIcon="fa fa-history"
+                content={
+                  <div className="table-full-width">
+                    <table className="table">
+                      <Tasks />
+                    </table>
+                  </div>
+                }
               />
             </Col>
             <Col lg={3} sm={6}>

@@ -26,12 +26,14 @@ class Header extends Component {
     this.mobileSidebarToggle = this.mobileSidebarToggle.bind(this);
     this.state = {
       sidebarExists: false,
+      showMenu: false,
     };
   }
   mobileSidebarToggle(e) {
     if (this.state.sidebarExists === false) {
       this.setState({
         sidebarExists: true,
+        showMenu: true,
       });
     }
     e.preventDefault();
@@ -51,7 +53,13 @@ class Header extends Component {
           <Navbar.Brand>
             <a href="/admin/dashboard">{this.props.brandText}</a>
           </Navbar.Brand>
-          <Navbar.Toggle onClick={this.mobileSidebarToggle} />
+          <Navbar.Toggle
+            key="3"
+            onClick={this.mobileSidebarToggle}
+            style={{
+              visibility: this.state.showMenu ? "display" : "hidden",
+            }}
+          />
         </Navbar.Header>
         <Navbar.Collapse>
           <AdminNavbarLinks />
