@@ -61,11 +61,11 @@ class Admin extends Component {
         break;
     }
     this.state._notificationSystem.addNotification({
-      title: <span data-notify="icon" className="pe-7s-gift" />,
+      title: <span data-notify="icon" className="pe-7s-leaf" />,
       message: (
         <div>
-          Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for
-          every web developer.
+          Bienvenidos a <b>Agro exportaciones para colombia</b> su mejor aliado
+          para exportar sus productos
         </div>
       ),
       level: level,
@@ -143,11 +143,11 @@ class Admin extends Component {
         break;
     }
     _notificationSystem.addNotification({
-      title: <span data-notify="icon" className="pe-7s-gift" />,
+      title: <span data-notify="icon" className="pe-7s-leaf" />,
       message: (
         <div>
-          Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for
-          every web developer.
+          Bienvenidos a <b>Agro exportaciones para colombia</b> su mejor aliado
+          para exportar sus productos
         </div>
       ),
       level: level,
@@ -187,7 +187,16 @@ class Admin extends Component {
             brandText={this.getBrandText(this.props.location.pathname)}
           />
           <Switch>{this.getRoutes(dashboardRoutes)}</Switch>
-          <Footer style={{ backgroundColor: "#3366cc" }} />
+          <Footer
+            style={{
+              backgroundColor: "#3366cc",
+              position: "fixed",
+              left: 250,
+              bottom: 0,
+              rigth: 0,
+              width: "88%",
+            }}
+          />
           {/* <FixedPlugin
             handleImageClick={this.handleImageClick}
             handleColorClick={this.handleColorClick}

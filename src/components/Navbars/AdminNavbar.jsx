@@ -51,7 +51,7 @@ class Header extends Component {
       <Navbar fluid style={this.props.style}>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/admin/dashboard">{this.props.brandText}</a>
+            <a href="">{this.props.brandText}</a>
           </Navbar.Brand>
           <Navbar.Toggle
             key="3"

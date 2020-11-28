@@ -19,6 +19,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.0.0",
     "react-spinkit": "^3.0.0",
+    "react-table": "^6.11.5",
     "react-toggle": "4.0.2",
     "react-widgets": "^4.6.1",
     "react-widgets-simple-number": "^4.1.26",

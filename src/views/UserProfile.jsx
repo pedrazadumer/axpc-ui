@@ -172,16 +172,31 @@ class UserProfile extends Component {
                       </Col>
                     </Row>
                     {error && <p style={{ marginLeft: "25px" }}>{error}</p>}
-                    <Button
-                      bsStyle="primary"
-                      fill
-                      style={{ width: "100%", marginTop: "10px" }}
-                      color={"#3366cc"}
-                      disabled={!valid || pristine || submitting}
-                      type="submit"
-                    >
-                      Guardar
-                    </Button>
+                    <Row>
+                      {" "}
+                      <Col md={6}>
+                        <Button
+                          bsStyle="primary"
+                          fill
+                          style={{ width: "100%", marginTop: "10px" }}
+                          color={"#3366cc"}
+                          disabled={!valid || pristine || submitting}
+                          type="submit"
+                        >
+                          Guardar cambios
+                        </Button>
+                      </Col>
+                      <Col md={6}>
+                        <Button
+                          bsStyle="cancel"
+                          fill
+                          style={{ width: "100%", marginTop: "10px" }}
+                          type="submit"
+                        >
+                          Eliminar cuenta
+                        </Button>
+                      </Col>
+                    </Row>
                   </form>
                 }
               />

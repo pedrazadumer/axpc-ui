@@ -46,7 +46,7 @@ ReactDOM.render(
 				<Switch>
         <Route path="/login" render={props => <Authentication {...props} />} />
         <Route path="/admin" render={props => <AdminLayout {...props} />} />
-         <Redirect from="/" to="/admin/dashboard" />
+         <Redirect from="/" to="/admin/products" />
 					{/*dashboardRoutes.map((prop, key) => {
 						if (prop.redirect)
 							return <Redirect from={prop.path} to={prop.to} key={key}/>

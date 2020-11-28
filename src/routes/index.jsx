@@ -19,14 +19,16 @@
 import Dashboard from "views/Dashboard.jsx";
 import UserProfile from "views/UserProfile.jsx";
 import TableList from "views/TableList.jsx";
+import ProductTable from "views/ProductTable.jsx";
 import Typography from "views/Typography.jsx";
 import Icons from "views/Icons.jsx";
 import Maps from "views/Maps.jsx";
 import Notifications from "views/Notifications.jsx";
 //import Upgrade from "views/Upgrade.jsx";
 import Authentication from "layouts/Authentication/Authentication.jsx";
+import CreateProducts from "views/CreateProducts";
 const dashboardRoutes = [
-  {
+  /* {
     path: "/login",
     name: "Home",
     component: Authentication,
@@ -39,7 +41,7 @@ const dashboardRoutes = [
     icon: "pe-7s-graph",
     component: Dashboard,
     layout: "/admin",
-  },
+  },*/
   {
     path: "/user",
     name: "Mi cuenta",
@@ -48,12 +50,26 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
-    path: "/table",
-    name: "Table List",
+    path: "/create",
+    name: "Crear productos",
+    icon: "pe-7s-graph",
+    component: CreateProducts,
+    layout: "/admin",
+  },
+  {
+    path: "/products",
+    name: "Mis productos",
     icon: "pe-7s-note2",
     component: TableList,
     layout: "/admin",
   },
+  {
+    path: "/productsTable",
+    name: "Resumen de productos",
+    icon: "pe-7s-news-paper",
+    component: ProductTable,
+    layout: "/admin",
+  } /*
   {
     path: "/typography",
     name: "Typography",
@@ -81,7 +97,7 @@ const dashboardRoutes = [
     icon: "pe-7s-bell",
     component: Notifications,
     layout: "/admin",
-  },
+  },*/,
   {
     redirect: true,
     path: "/",

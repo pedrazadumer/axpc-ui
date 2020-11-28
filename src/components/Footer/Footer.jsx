@@ -26,25 +26,32 @@ class Footer extends Component {
           <nav className="pull-left">
             <ul>
               <li>
-                <a href="#pablo">Home</a>
+                <a href="/admin/products">Inicio</a>
               </li>
               <li>
-                <a href="#pablo">Company</a>
+                <a
+                  href="https://www.minagricultura.gov.co/paginas/default.aspx"
+                  target="_blank"
+                >
+                  Patrocinio
+                </a>
               </li>
               <li>
-                <a href="#pablo">Portfolio</a>
-              </li>
-              <li>
-                <a href="#pablo">Blog</a>
+                <a href="https://uniandes.edu.co/" target="_blank">
+                  Uniandes
+                </a>
               </li>
             </ul>
           </nav>
           <p className="copyright pull-right" style={{ color: "white" }}>
             &copy; {new Date().getFullYear()}{" "}
-            <a href="http://www.creative-tim.com?ref=lbr-footer">
-              Creative Tim
+            <a
+              href="https://www.minagricultura.gov.co/paginas/default.aspx"
+              target="_blank"
+            >
+              Ministerio de agricultura y desarrollo rural
             </a>
-            , made with love for a better web
+            , Ministerio de Tecnologías de la Información y las Comunicaciones
           </p>
         </Grid>
       </footer>

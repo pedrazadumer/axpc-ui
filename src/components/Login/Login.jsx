@@ -29,7 +29,7 @@ class Login extends Component {
             _error: "Login failed!",
           });
         } else {
-          this.props.history.push("/admin/dashboard");
+          this.props.history.push("/admin/products");
           // window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
         }
       }

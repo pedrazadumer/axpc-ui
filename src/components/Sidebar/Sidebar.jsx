@@ -54,10 +54,9 @@ class Sidebar extends Component {
           <div className="sidebar-background" style={sidebarBackground} />
         ) : null}
         <div className="logo">
+          {/*className="simple-text logo-mini">*/}
           <a href="" className="simple-text logo-mini">
-            <div className="logo-img">
-              <img src={logo} alt="logo_image" />
-            </div>
+            <div className="pe-7s-leaf"></div>
           </a>
           <a href="" className="simple-text logo-normal">
             Agro Exportadores
