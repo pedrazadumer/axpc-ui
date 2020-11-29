@@ -110,7 +110,7 @@ class Authentication extends Component {
       );
     else
       return (
-        <div>
+        <div style={{ minHeight: "76vh" }}>
           <Row>
             <Col md={12}>
               <SignUp

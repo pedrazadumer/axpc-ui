@@ -144,8 +144,10 @@ class SignUp extends Component {
                 </Col>
               </Row>
               {this.state.showProductOps && (
-                <Row style={{ marginLeft: "15px" }}>
-                  <p>Tipo de productos:</p>
+                <Row style={{ marginLeft: "5px" }}>
+                  <p style={{ fontSize: "12px", fontFamily: "Roboto" }}>
+                    TIPO DE PRODUCTOS
+                  </p>
                   <Col md={2}>
                     <Field
                       name="Frutas"
