@@ -4,6 +4,7 @@ import {
   renderInputComponent,
   renderSelectList,
   renderDropdownList,
+  renderCheckboxComponent,
 } from "helpers/widgets";
 import SimpleSpinner from "components/Spinner/simpleSpinner";
 import Button from "components/CustomButton/CustomButton.jsx";
@@ -14,18 +15,24 @@ const datatipoUser = ["Exportador ", "Comprador"];
 class SignUp extends Component {
   constructor(props, state) {
     super(props, state);
-    this.state = { code: null, digit: null, stoploading: true };
+    this.state = {
+      code: null,
+      digit: null,
+      stoploading: true,
+      showProductOps: false,
+    };
+    this.tipoUsuario = this.tipoUsuario.bind(this);
+  }
+  tipoUsuario(val) {
+    if (val.includes("Exportador")) {
+      this.setState({ showProductOps: true });
+    } else this.setState({ showProductOps: false });
   }
   render() {
     const { error, handleSubmit, pristine, submitting, valid } = this.props;
 
     return (
-      <div
-        style={{
-          marginTop: "1%",
-          marginRight: "5%",
-        }}
-      >
+      <div style={{ marginLeft: "2vw", marginRight: "2vw" }}>
         <SimpleSpinner spin={!this.state.stoploading} />
         <Card
           title="Registrese"
@@ -63,7 +70,7 @@ class SignUp extends Component {
                     name="celular"
                     label="Número de celular"
                     component={renderInputComponent}
-                    type="text"
+                    type="number"
                     placeholder="Ingrese su numero celular"
                   />
                 </Col>
@@ -111,7 +118,7 @@ class SignUp extends Component {
                     name="numDoc"
                     label="Número de identifiación"
                     component={renderInputComponent}
-                    type="text"
+                    type="number"
                     placeholder="Ingrese su número de identificación"
                   />
                 </Col>
@@ -132,9 +139,68 @@ class SignUp extends Component {
                     label="Tipo de usuario"
                     component={renderDropdownList}
                     data={datatipoUser}
+                    onChange={(val) => this.tipoUsuario(val)}
                   />
                 </Col>
               </Row>
+              {this.state.showProductOps && (
+                <Row style={{ marginLeft: "15px" }}>
+                  <p>Tipo de productos:</p>
+                  <Col md={2}>
+                    <Field
+                      name="Frutas"
+                      label="Frutas"
+                      component={renderCheckboxComponent}
+                      type="checkbox"
+                      style={{
+                        marginLeft: "20px",
+                        width: "20px",
+                        padding: "0px",
+                      }}
+                    />
+                  </Col>
+                  <Col md={2}>
+                    <Field
+                      name="Verduras"
+                      label="Verduras"
+                      component={renderCheckboxComponent}
+                      type="checkbox"
+                      style={{
+                        marginLeft: "20px",
+                        width: "20px",
+                        padding: "0px",
+                      }}
+                    />
+                  </Col>
+                  <Col md={2}>
+                    <Field
+                      name="Granos"
+                      label="Granos"
+                      component={renderCheckboxComponent}
+                      type="checkbox"
+                      style={{
+                        marginLeft: "20px",
+                        width: "20px",
+                        padding: "0px",
+                      }}
+                    />
+                  </Col>
+                  <Col md={2}>
+                    <Field
+                      name="Otros"
+                      label="Otros"
+                      component={renderCheckboxComponent}
+                      type="checkbox"
+                      style={{
+                        marginLeft: "20px",
+                        width: "20px",
+                        padding: "0px",
+                      }}
+                    />
+                  </Col>
+                  <Col md={4}></Col>
+                </Row>
+              )}
               <Row>
                 <Col md={6}>
                   <Field

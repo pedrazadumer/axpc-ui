@@ -44,7 +44,7 @@ class UserProfile extends Component {
       <div className="content">
         <Grid fluid style={{ marginBottom: "6%" }}>
           <Row>
-            <Col md={8}>
+            <Col md={12}>
               <Card
                 title="Editar mis datos"
                 content={
@@ -201,7 +201,7 @@ class UserProfile extends Component {
                 }
               />
             </Col>
-            <Col md={4}>
+            {/* <Col md={4}>
               <UserCard
                 bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
                 avatar={avatar}
@@ -230,7 +230,7 @@ class UserProfile extends Component {
                   </div>
                 }
               />
-            </Col>
+              </Col>*/}
           </Row>
         </Grid>
       </div>

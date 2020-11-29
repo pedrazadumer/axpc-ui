@@ -19,7 +19,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
 import AdminNavbarLinks from "../Navbars/AdminNavbarLinks.jsx";
-import imagine from "assets/img/sidebar-4.jpg";
+import imagine from "assets/img/sidebar.jpg";
 import logo from "assets/img/reactlogo.png";
 
 class Sidebar extends Component {

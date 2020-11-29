@@ -48,11 +48,11 @@ class CreateProducts extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
-    console.log("event", event);
-    console.log("window", window);
+    //console.log("event", event);
+    //console.log("window", window);
     const mediaStream = new MediaStream();
     const image = { url: event }; // document.getElementById("productImage");
-    console.log("image", image);
+    //console.log("image", image);
     image.srcObject = mediaStream;
     this.setState({
       file: image,
@@ -64,7 +64,6 @@ class CreateProducts extends Component {
     const number = (value) =>
       value && isNaN(Number(value)) ? "Must be a number" : undefined;
     let picture = defaultAvatar;
-    console.log("this.state.file", this.state.file);
     return (
       <div className="content">
         <Grid fluid style={{ marginBottom: "6%" }}>

@@ -190,7 +190,6 @@ class Admin extends Component {
           <Footer
             style={{
               backgroundColor: "#3366cc",
-              position: "fixed",
               left: 250,
               bottom: 0,
               rigth: 0,

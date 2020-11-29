@@ -33,7 +33,7 @@ class Footer extends Component {
                   href="https://www.minagricultura.gov.co/paginas/default.aspx"
                   target="_blank"
                 >
-                  Patrocinio
+                  Patrocina
                 </a>
               </li>
               <li>

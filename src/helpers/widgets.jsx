@@ -50,7 +50,47 @@ const renderMultiselect = ({ input, data, valueField, textField }) => (
     textField={textField}
   />
 );
-
+const renderCheckboxComponent = function ({
+  style,
+  input,
+  className,
+  label,
+  onBlurC,
+  onChange,
+  disabled,
+  checked,
+  meta: { touched, error, active },
+}) {
+  /*
+	const action = e => {
+		onChange && onChange(e.target.value)
+		input.onChange(e)
+	}*/
+  const blur = (value) => {
+    if (input.value === 0) value = 1;
+    else if (input.value === 1) value = 0;
+    else if (input.value === "" && input.checked === false) value = 1;
+    else if (input.value === "" && input.checked === true) value = 0;
+    onBlurC && onBlurC(value);
+    input.onBlur(value);
+  };
+  return (
+    <div className="form-group">
+      {label && <label>{label}</label>}
+      <FieldGroup
+        {...input}
+        style={style}
+        className={className}
+        type="checkbox"
+        checked={checked ? checked : input.value}
+        onClick={blur}
+        //onBlur={blur}
+        disabled={disabled}
+      />
+      {touched && error && <span className="badge badge-danger">{error}</span>}
+    </div>
+  );
+};
 const renderSelectList = ({ input, data }) => (
   <SelectList {...input} onBlur={() => input.onBlur()} data={data} />
 );
@@ -66,7 +106,7 @@ const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => (
 function renderImage({ input, label, src, onChange, alt }) {
   let inputField = undefined;
   const action = (e) => {
-    console.log("e", e);
+    // console.log("e", e);
     onChange && onChange(e.target.value);
     input.onChange(e.target.value);
   };
@@ -180,8 +220,8 @@ export {
     renderComboboxRD,*/
   renderNumberPicker,
   renderInputComponent,
+  renderCheckboxComponent,
   /*  renderTextAreaComponent,
-    renderCheckboxComponent,
     treeSelectComponent,
     renderColorComponent,
     renderRadioButtonSelect,

@@ -7,6 +7,7 @@ import Login from "components/Login/Login";
 import SignUp from "components/SignUp/SignUp";
 import { Route } from "react-router-dom";
 import HeaderLogin from "components/Navbars/HeaderLogin";
+
 import Footer from "components/Footer/Footer";
 import dashboardRoutes from "routes/index.jsx";
 import { Row, Col } from "react-bootstrap";
@@ -21,6 +22,7 @@ class Authentication extends Component {
     this.switchAuthentication = this.switchAuthentication.bind(this);
   }
   switchAuthentication() {
+    //console.log("entroo switchAuthentication");
     let login = !this.state.login;
     this.setState({ login });
   }
@@ -78,30 +80,48 @@ class Authentication extends Component {
     console.log("registro", values);
   };
   options() {
-    // if (this.state.login)
-    return (
-      <div>
-        <Row>
-          <Col md={4}>
-            <Login
-              key="login"
-              history={this.props.history}
-              switchAuthentication={this.switchAuthentication}
-              companyInfo={this.state.companyInfo}
-            />
-          </Col>
-          <Col md={8}>
-            <SignUp
-              key="signup"
-              onSubmit={this.submit}
-              history={this.props.history}
-              showDBSettings={this.showDBSettings}
-              switchAuthentication={this.switchAuthentication}
-            />{" "}
-          </Col>
-        </Row>
-      </div>
-    );
+    if (this.state.login)
+      return (
+        <div style={{ minHeight: "76vh" }}>
+          <Row>
+            <Col md={1}></Col>
+            <Col md={4}>
+              <Login
+                key="login"
+                history={this.props.history}
+                companyInfo={this.state.companyInfo}
+              />
+            </Col>
+            <Col md={1}></Col>
+            <Col md={6}>
+              <img
+                src="../../Images/AgroE.jpg"
+                style={{
+                  width: "70%",
+                  height: "60%",
+                  marginLeft: "10%",
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                }}
+              />
+            </Col>
+          </Row>
+        </div>
+      );
+    else
+      return (
+        <div>
+          <Row>
+            <Col md={12}>
+              <SignUp
+                key="signup"
+                onSubmit={this.submit}
+                history={this.props.history}
+              />{" "}
+            </Col>
+          </Row>
+        </div>
+      );
     /* else
     return (
       <SignUp
@@ -118,20 +138,18 @@ class Authentication extends Component {
       <div>
         <HeaderLogin
           {...this.props}
-          style={{ backgroundColor: "#3366cc", width: "100%" }}
+          style={{ backgroundColor: "#3366cc", height: "60px" }}
           brandText={this.getBrandText(this.props.location.pathname)}
+          switchAuthentication={this.switchAuthentication}
         />
         <div style={{ marginLeft: "5%" }}>
-          <p> Bienvenido a AgroExportaciones para Colombia</p>
+          <h4> Bienvenido a AgroExportaciones para Colombia</h4>
         </div>
         {this.options()}
         <Footer
           style={{
             backgroundColor: "#3366cc",
-            position: "fixed",
-            left: 0,
-            bottom: 0,
-            width: "100%",
+            paddingBottom: "0px",
           }}
         />
       </div>

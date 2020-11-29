@@ -17,8 +17,7 @@
 */
 import React, { Component } from "react";
 import { Navbar } from "react-bootstrap";
-
-import AdminNavbarLinks from "./AdminNavbarLinks.jsx";
+import HeaderLinksLogin from "./HeaderLinksLogin";
 
 class HeaderLogin extends Component {
   constructor(props) {
@@ -48,9 +47,19 @@ class HeaderLogin extends Component {
     return (
       <Navbar fluid style={this.props.style}>
         <Navbar.Header>
-          <img src="../../Images/logoGob.png" height="60px" width="300" />
+          <img
+            src="../../Images/logoGob.png"
+            height="60px"
+            width="300"
+            paddingTop="5px"
+          />
           <Navbar.Toggle onClick={this.mobileSidebarToggle} />
         </Navbar.Header>
+        <Navbar.Collapse>
+          <HeaderLinksLogin
+            switchAuthentication={this.props.switchAuthentication}
+          />
+        </Navbar.Collapse>
       </Navbar>
     );
   }
