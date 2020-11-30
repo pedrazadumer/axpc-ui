@@ -31,13 +31,27 @@ import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 import {
   renderInputComponent,
-  renderSelectList,
+  //renderSelectList,
   renderDropdownList,
+  renderCheckboxComponent,
 } from "helpers/widgets";
 import avatar from "assets/img/faces/face-3.jpg";
 const dataIdentificacion = ["Cedula de ciudadania", "Tarjeta de Identidad"];
 const datatipoUser = ["Exportador ", "Comprador"];
 class UserProfile extends Component {
+  constructor(props, state) {
+    super(props, state);
+    this.state = {
+      stoploading: true,
+      showProductOps: false,
+    };
+    this.tipoUsuario = this.tipoUsuario.bind(this);
+  }
+  tipoUsuario(val) {
+    if (val.includes("Exportador")) {
+      this.setState({ showProductOps: true });
+    } else this.setState({ showProductOps: false });
+  }
   render() {
     const { error, handleSubmit, pristine, submitting, valid } = this.props;
     return (
@@ -148,9 +162,70 @@ class UserProfile extends Component {
                           label="Tipo de usuario"
                           component={renderDropdownList}
                           data={datatipoUser}
+                          onChange={(val) => this.tipoUsuario(val)}
                         />
                       </Col>
                     </Row>
+                    {this.state.showProductOps && (
+                      <Row style={{ marginLeft: "5px" }}>
+                        <p style={{ fontSize: "12px", fontFamily: "Roboto" }}>
+                          TIPO DE PRODUCTOS
+                        </p>
+                        <Col md={2}>
+                          <Field
+                            name="Frutas"
+                            label="Frutas"
+                            component={renderCheckboxComponent}
+                            type="checkbox"
+                            style={{
+                              marginLeft: "20px",
+                              width: "20px",
+                              padding: "0px",
+                            }}
+                          />
+                        </Col>
+                        <Col md={2}>
+                          <Field
+                            name="Verduras"
+                            label="Verduras"
+                            component={renderCheckboxComponent}
+                            type="checkbox"
+                            style={{
+                              marginLeft: "20px",
+                              width: "20px",
+                              padding: "0px",
+                            }}
+                          />
+                        </Col>
+                        <Col md={2}>
+                          <Field
+                            name="Granos"
+                            label="Granos"
+                            component={renderCheckboxComponent}
+                            type="checkbox"
+                            style={{
+                              marginLeft: "20px",
+                              width: "20px",
+                              padding: "0px",
+                            }}
+                          />
+                        </Col>
+                        <Col md={2}>
+                          <Field
+                            name="Otros"
+                            label="Otros"
+                            component={renderCheckboxComponent}
+                            type="checkbox"
+                            style={{
+                              marginLeft: "20px",
+                              width: "20px",
+                              padding: "0px",
+                            }}
+                          />
+                        </Col>
+                        <Col md={4}></Col>
+                      </Row>
+                    )}
                     <Row>
                       <Col md={6}>
                         <Field
