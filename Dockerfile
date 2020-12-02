@@ -1,4 +1,4 @@
-FROM axpc-react-base:latest
+FROM pedrazadumer/axpc-react-base:latest
 
 # install app dependencies
 COPY package.json ./
