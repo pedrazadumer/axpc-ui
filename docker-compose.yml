@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  axpc-bd:
+    image: pedrazadumer/axpc-bd:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=root"
+  axpc-clientes:
+    image: pedrazadumer/axpc-clientes:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - "JAVA_OPTS=-Dspring.datasource.url=jdbc:mariadb://axpc-bd:3306/axpc"
+    depends_on:
+      - axpc-bd
