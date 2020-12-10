@@ -16,15 +16,23 @@
 
 */
 import React, { Component } from "react";
-import { Grid, Row, Col, Table } from "react-bootstrap";
+// Import React Table
 import ReactTable from "react-table";
+import "react-table/react-table.css";
+import { Grid, Row, Col } from "react-bootstrap";
 import Card from "components/Card/Card.jsx";
 import { thArray, tdArray } from "variables/Variables.jsx";
 
 const data = [
-  { producto: "Papa", precioEnKg: "15.000", precioTon: "100.000" },
-  { producto: "Arroz", precioEnKg: "15.000", precioTon: "100.000" },
-  { producto: "Tomate", precioEnKg: "15.000", precioTon: "100.000" },
+  { producto: "Tomate", precioEnKg: "3.000", precioTon: "3'000.000" },
+  { producto: "Papa criolla", precioEnKg: "3.500", precioTon: "3'500.000" },
+  { producto: "Cebolla", precioEnKg: "3.000", precioTon: "3'000.000" },
+  { producto: "Uchuva", precioEnKg: "4.000", precioTon: "4'000.000" },
+  { producto: "Zanahoria", precioEnKg: "2.500", precioTon: "2'500.000" },
+  { producto: "Papa Pastusa", precioEnKg: "3.000", precioTon: "3'000.000" },
+  { producto: "Mazorca", precioEnKg: "4.000", precioTon: "4'000.000" },
+  { producto: "Arroz", precioEnKg: "2.500", precioTon: "2'500.000" },
+  { producto: "Cacao", precioEnKg: "3.000", precioTon: "3'000.000" },
 ];
 const columnsList = ["producto", "precioEnKg", "precioTon"];
 const captions = ["Producto", "Precio en kg", "Precio en Toneladas"];
@@ -44,7 +52,7 @@ class ProductTable extends Component {
   }
 
   getDataAndColumns() {
-    const records = data;
+    let records = data;
     const columns = columnsList;
     const caption = captions;
     if (!records || !columns) {
@@ -58,7 +66,7 @@ class ProductTable extends Component {
         //style: { whiteSpace: "unset" },
       };
     });
-
+    //console.log("defaultColumns", defaultColumns);
     this.setState({
       columns: defaultColumns,
       data: records,
@@ -66,12 +74,12 @@ class ProductTable extends Component {
     });
   }
   render() {
-    const { columns, data } = this.state;
+    let { columns, data } = this.state;
     console.log("columns", columns);
     console.log("data", data);
     return (
       <div className="content">
-        <Grid fluid>
+        <Grid fluid style={{ marginBottom: "8%" }}>
           <Row>
             <Col md={12}>
               <Card
@@ -81,11 +89,11 @@ class ProductTable extends Component {
                 ctTableResponsive
                 content={
                   columns && (
-                    <div style={{ marginLeft: "15%" }}>
+                    <div style={{ margin: "15px", marginBottom: "15px" }}>
                       <ReactTable
                         data={data}
                         columns={columns}
-                        defaultPageSize={20}
+                        defaultPageSize={10}
                         style={{
                           overflow: "wrap",
                           textOverflow: "ellipsis",

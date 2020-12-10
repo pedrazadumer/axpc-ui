@@ -66,7 +66,7 @@ class CreateProducts extends Component {
     let picture = defaultAvatar;
     return (
       <div className="content">
-        <Grid fluid style={{ marginBottom: "6%" }}>
+        <Grid fluid style={{ marginBottom: "8%" }}>
           <Row>
             <Col md={12}>
               <Card
@@ -74,7 +74,7 @@ class CreateProducts extends Component {
                 content={
                   <form
                     id="signup"
-                    //style={{ margin: "10px" }}
+                    style={{ margin: "5%" }}
                     //onSubmit={handleSubmit}
                   >
                     <Row>

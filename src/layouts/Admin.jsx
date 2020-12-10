@@ -193,7 +193,7 @@ class Admin extends Component {
               left: 250,
               bottom: 0,
               rigth: 0,
-              width: "88%",
+              width: "100%",
             }}
           />
           {/* <FixedPlugin

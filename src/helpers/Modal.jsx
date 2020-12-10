@@ -6,8 +6,8 @@ class Modal extends Component {
     this.state = { show: false, classToUse: "custom-modal" };
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleExpand = this.handleExpand.bind(this);
-    this.handleTranslateX = this.handleTranslateX.bind(this);
+    // this.handleExpand = this.handleExpand.bind(this);
+    //this.handleTranslateX = this.handleTranslateX.bind(this);
   }
   handleClose() {
     this.setState({ show: false });
@@ -25,7 +25,10 @@ class Modal extends Component {
         className={this.state.classToUse}
       >
         <ModalB.Header
-          style={{ padding: "5px", paddingRight: "10px" }}
+          style={{
+            padding: "5px",
+            paddingRight: "10px",
+          }}
           //closeButton
         >
           <ModalB.Title style={{ textAlign: "center" }}>

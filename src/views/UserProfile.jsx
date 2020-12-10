@@ -29,6 +29,7 @@ import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
+import Spinner from "components/Spinner/simpleSpinner";
 import {
   renderInputComponent,
   //renderSelectList,
@@ -36,6 +37,7 @@ import {
   renderCheckboxComponent,
 } from "helpers/widgets";
 import avatar from "assets/img/faces/face-3.jpg";
+import Modal from "helpers/Modal";
 const dataIdentificacion = ["Cedula de ciudadania", "Tarjeta de Identidad"];
 const datatipoUser = ["Exportador ", "Comprador"];
 class UserProfile extends Component {
@@ -44,19 +46,95 @@ class UserProfile extends Component {
     this.state = {
       stoploading: true,
       showProductOps: false,
+      titleModal: "Advertencia",
+      contentModal: "",
+      error: false,
+      loading: false,
     };
     this.tipoUsuario = this.tipoUsuario.bind(this);
+    this.deleteConfirmation = this.deleteConfirmation.bind(this);
+    this.confirmDelete = this.confirmDelete.bind(this);
   }
   tipoUsuario(val) {
     if (val.includes("Exportador")) {
       this.setState({ showProductOps: true });
     } else this.setState({ showProductOps: false });
   }
+  confirmDelete(val) {
+    this.modal.handleClose();
+    console.log("val");
+    if (val === true) {
+      this.setState(
+        {
+          titleModal: "Advertencia",
+          contentModal: "Su cuenta fue eliminada exitosamente",
+          loading: true,
+        },
+        (_) =>
+          window.setTimeout(
+            this.modal.handleShow(),
+            setTimeout((_) => (window.location.pathname = "/login"), 1500),
+            2000
+          )
+      );
+    }
+  }
+  deleteConfirmation() {
+    this.setState(
+      {
+        titleModal: "Advertencia",
+        contentModal: (
+          <div>
+            <Row style={{ margin: "10px" }}>
+              <h4>Está seguro que desea eliminar esta cuenta?</h4>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <Button
+                  name="eliminar"
+                  bsStyle="success"
+                  style={{ width: "100%" }}
+                  pullRight
+                  fill
+                  onClick={(_) => this.confirmDelete(true)}
+                >
+                  Confirmar
+                </Button>
+              </Col>
+              <Col md={6}>
+                <Button
+                  name="cancelar"
+                  bsStyle="danger"
+                  pullRight
+                  style={{ width: "100%" }}
+                  fill
+                  onClick={(_) => this.modal.handleClose()}
+                >
+                  Cancelar
+                </Button>
+              </Col>
+            </Row>
+          </div>
+        ),
+        error: false,
+      },
+      (_) => this.modal.handleShow()
+    );
+  }
   render() {
     const { error, handleSubmit, pristine, submitting, valid } = this.props;
     return (
       <div className="content">
-        <Grid fluid style={{ marginBottom: "6%" }}>
+        <Spinner spin={this.state.loading} />
+        <Modal
+          ref={(modal) => (this.modal = modal)}
+          title={this.state.titleModal}
+          content={<p>{this.state.contentModal}</p>}
+          error={this.state.error}
+          history={this.props.history}
+          showFooter
+        />
+        <Grid fluid style={{ marginBottom: "3%" }}>
           <Row>
             <Col md={12}>
               <Card
@@ -266,7 +344,7 @@ class UserProfile extends Component {
                           bsStyle="cancel"
                           fill
                           style={{ width: "100%", marginTop: "10px" }}
-                          type="submit"
+                          onClick={(val) => this.deleteConfirmation(val)}
                         >
                           Eliminar cuenta
                         </Button>
