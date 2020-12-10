@@ -37,8 +37,8 @@ class TableList extends Component {
                   <div style={{ marginLeft: "15%" }}>
                     <img
                       src="../../Images/tomate.jpeg"
-                      height="200px"
-                      width="300"
+                      height="50%"
+                      width="80%"
                     />
                     <p>Precio en kg: 15.000</p>
                     <p>Precio en toneladas: 90.000</p>
@@ -56,8 +56,8 @@ class TableList extends Component {
                   <div style={{ marginLeft: "15%" }}>
                     <img
                       src="../../Images/papaCriolla.jpg"
-                      height="200px"
-                      width="300"
+                      height="50%"
+                      width="80%"
                     />
                     <p>Precio en kg: 25.000</p>
                     <p>Precio en toneladas: 100.000</p>
@@ -75,8 +75,8 @@ class TableList extends Component {
                   <div style={{ marginLeft: "15%" }}>
                     <img
                       src="../../Images/cebollas.png"
-                      height="200px"
-                      width="300"
+                      height="50%"
+                      width="80%"
                     />
                     <p>Precio en kg: 12.000</p>
                     <p>Precio en toneladas: 80.000</p>
@@ -96,8 +96,8 @@ class TableList extends Component {
                   <div style={{ marginLeft: "15%" }}>
                     <img
                       src="../../Images/uchua.jpg"
-                      height="200px"
-                      width="300"
+                      height="50%"
+                      width="80%"
                     />
                     <p>Precio en kg: 15.000</p>
                     <p>Precio en toneladas: 90.000</p>
@@ -115,8 +115,8 @@ class TableList extends Component {
                   <div style={{ marginLeft: "15%" }}>
                     <img
                       src="../../Images/zanahoria.jpg"
-                      height="200px"
-                      width="300"
+                      height="50%"
+                      width="80%"
                     />
                     <p>Precio en kg: 25.000</p>
                     <p>Precio en toneladas: 100.000</p>
@@ -134,8 +134,8 @@ class TableList extends Component {
                   <div style={{ marginLeft: "15%" }}>
                     <img
                       src="../../Images/papaPastusa.jpeg"
-                      height="200px"
-                      width="300"
+                      height="50%"
+                      width="80%"
                     />
                     <p>Precio en kg: 12.000</p>
                     <p>Precio en toneladas: 80.000</p>
@@ -155,8 +155,8 @@ class TableList extends Component {
                   <div style={{ marginLeft: "15%" }}>
                     <img
                       src="../../Images/mazorca.jpg"
-                      height="200px"
-                      width="300"
+                      height="50%"
+                      width="80%"
                     />
                     <p>Precio en kg: 35.000</p>
                     <p>Precio en toneladas: 120.000</p>
@@ -174,8 +174,8 @@ class TableList extends Component {
                   <div style={{ marginLeft: "15%" }}>
                     <img
                       src="../../Images/arroz.jpg"
-                      height="200px"
-                      width="300"
+                      height="50%"
+                      width="80%"
                     />
                     <p>Precio en kg: 25.000</p>
                     <p>Precio en toneladas: 100.000</p>
@@ -193,8 +193,8 @@ class TableList extends Component {
                   <div style={{ marginLeft: "15%" }}>
                     <img
                       src="../../Images/cacao.jpg"
-                      height="200px"
-                      width="300"
+                      height="50%"
+                      width="80%"
                     />
                     <p>Precio en kg: 12.000</p>
                     <p>Precio en toneladas: 80.000</p>
