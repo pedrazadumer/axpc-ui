@@ -7,7 +7,7 @@ import Login from "components/Login/Login";
 import SignUp from "components/SignUp/SignUp";
 import { Route } from "react-router-dom";
 import HeaderLogin from "components/Navbars/HeaderLogin";
-
+import { registerProducer } from "actions/clientsAction"
 import Footer from "components/Footer/Footer";
 import dashboardRoutes from "routes/index.jsx";
 import { Row, Col } from "react-bootstrap";
@@ -78,6 +78,7 @@ class Authentication extends Component {
   submit = (values) => {
     // Do something with the form values
     console.log("registro", values);
+    this.props.registerProducer(values).then(resp => console.log("resp", resp))
   };
   options() {
     if (this.state.login)
@@ -162,7 +163,7 @@ const mapStateToProps = (store) => {
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return { registerProducer: obj => dispatch(registerProducer(obj)) };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Authentication);

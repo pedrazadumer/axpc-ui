@@ -1,7 +1,7 @@
-import { decryptPayload } from 'helpers/encryption'
-import { I18n } from 'react-redux-i18n'
-import { REACT_APP_DOMAIN } from 'config'
-
+//import { decryptPayload } from 'helpers/encryption'
+//import { I18n } from 'react-redux-i18n'
+//import { REACT_APP_DOMAIN } from 'config'
+var { domain } = window
 export function catchError(argument) {
 	return error => console.error('(util) Error catched: ', { error })
 }
@@ -33,7 +33,7 @@ export async function post({ url, data, dispatch, extra_parameters }) {
 	return new Promise((resolve, reject) => {
 		window.$.ajax({
 			type: 'POST',
-			url: `${REACT_APP_DOMAIN}${url}`,
+			url: `${domain}${url}`,
 			data:
 				data !== undefined && typeof data.entries === 'function'
 					? data
@@ -47,7 +47,7 @@ export async function post({ url, data, dispatch, extra_parameters }) {
 			if (response.error) {
 				const error = {
 					status: 400,
-					responseJSON: { Message: I18n.t('notifications.errorMessage') } //{ Message: response.dxn_error }
+					responseJSON: { Message: "error" } //{ Message: response.dxn_error }
 				}
 				throw error
 			} /*else if (!response) {
@@ -59,7 +59,7 @@ export async function post({ url, data, dispatch, extra_parameters }) {
 			}*/
 			log(`[POST] response to ${url}`, { response })
 			if (response) {
-                return response
+				return response
 				/*try {
 					//console.log('response2', response)
 					//console.log('decryptPass', decryptPass)
