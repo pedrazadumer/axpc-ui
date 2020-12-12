@@ -7,10 +7,12 @@ import Login from "components/Login/Login";
 import SignUp from "components/SignUp/SignUp";
 import { Route } from "react-router-dom";
 import HeaderLogin from "components/Navbars/HeaderLogin";
-import { registerProducer } from "actions/clientsAction"
+import { getProducers, registerProducer } from "actions/clientsAction"
 import Footer from "components/Footer/Footer";
 import dashboardRoutes from "routes/index.jsx";
 import { Row, Col } from "react-bootstrap";
+import { reduxForm } from "redux-form";
+var { domain } = window
 //const ClickableField = loadable(() => import('components/ClickableField'))
 class Authentication extends Component {
   constructor(props, state) {
@@ -77,8 +79,12 @@ class Authentication extends Component {
   }
   submit = (values) => {
     // Do something with the form values
-    console.log("registro", values);
-    this.props.registerProducer(values).then(resp => console.log("resp", resp))
+    //this.props.getProducers()//.then(resp => console.log("resp", resp))
+    /*fetch(`${domain}${"api/v1/productores"}`).then(resp => resp.json()).then(data => {
+      console.log("fata", data)
+    }).catch(error => console.log("errror", error))*/
+    //console.log("registro", values);
+    //this.props.registerProducer(values)
   };
   options() {
     if (this.state.login)
@@ -162,8 +168,16 @@ const mapStateToProps = (store) => {
     user: store.user,
   };
 };
-const mapDispatchToProps = (dispatch) => {
-  return { registerProducer: obj => dispatch(registerProducer(obj)) };
+const mapDispatchToProps = dispatch => {
+  return {
+    registerProducer: obj => dispatch(registerProducer(obj)),
+    getProducers: params => dispatch(getProducers(params))
+  };
 };
+Authentication = reduxForm({
+  form: 'Authentication',
+  asyncChangeFields: []
+})(Authentication)
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Authentication);

@@ -13,19 +13,22 @@ const log = logee => {
 
 export async function post({ url, data, dispatch, extra_parameters }) {
 	let params = { ...data }
-	
+	console.log("domain", domain)
+	console.log("url", url)
 	return new Promise((resolve, reject) => {
 		$.ajax({
 			type: 'POST',
 			url: `${domain}${url}`,
-			data:
-				data !== undefined && typeof data.entries === 'function'
-					? data
-					: params,
-			...extra_parameters
+			data: data,
+			/*data !== undefined && typeof data.entries === 'function'
+				? data
+				: params,*/
+			...extra_parameters,
+			crossDomain: true,
+			dataType: 'jsonp'
 		})
-			.done(resolve)
-			.catch(reject)
+		//.done(resolve)
+		//.catch(reject)
 	})
 		.then(async response => {
 			/*if (response.error) {
@@ -38,7 +41,7 @@ export async function post({ url, data, dispatch, extra_parameters }) {
 			//log(`[POST] response to ${url}`, { response })
 			if (response) {
 				return response
-				
+
 			} else return undefined
 		})
 		.catch(async response => {

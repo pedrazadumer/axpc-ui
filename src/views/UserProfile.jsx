@@ -55,6 +55,12 @@ class UserProfile extends Component {
     this.deleteConfirmation = this.deleteConfirmation.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
   }
+  componentDidMount() {
+    this.props.initialize({
+      firstname: "Paula",
+      lastname: "Salazar"
+    })
+  }
   tipoUsuario(val) {
     if (val.includes("Exportador")) {
       this.setState({ showProductOps: true });
@@ -142,8 +148,8 @@ class UserProfile extends Component {
                 content={
                   <form
                     id="signup"
-                    //style={{ margin: "10px" }}
-                    //onSubmit={handleSubmit}
+                  //style={{ margin: "10px" }}
+                  //onSubmit={handleSubmit}
                   >
                     <Row>
                       <Col md={6}>

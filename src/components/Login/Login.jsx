@@ -18,7 +18,7 @@ class Login extends Component {
     return sleep(1000).then(() => {
       // simulate server latency
       if (values) {
-        if (!["john", "paul", "george", "ringo"].includes(values.username)) {
+        if (!["john", "paula", "george", "ringo"].includes(values.username)) {
           throw new SubmissionError({
             username: "User does not exist",
             _error: "Login failed!",
