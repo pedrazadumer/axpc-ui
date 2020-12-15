@@ -7,7 +7,7 @@ import Login from "components/Login/Login";
 import SignUp from "components/SignUp/SignUp";
 import { Route } from "react-router-dom";
 import HeaderLogin from "components/Navbars/HeaderLogin";
-import { getProducers, registerProducer } from "actions/clientsAction"
+import { getProducers, registerProducer, registerCompradores } from "actions/clientsAction"
 import Footer from "components/Footer/Footer";
 import dashboardRoutes from "routes/index.jsx";
 import { Row, Col } from "react-bootstrap";
@@ -79,12 +79,44 @@ class Authentication extends Component {
   }
   submit = (values) => {
     // Do something with the form values
+    console.log("registro", values);
+    var params = {
+      identificacion: values.numDoc,
+      tipoIdentificacion: values.tipoDoc,
+      primerNombre: values.firstname,
+      segundoNombre: "",
+      primerApellido: values.lastname,
+      segundoApellido: "",
+      correo: values.email,
+      clave: values.password,
+      telefono: values.celular,
+      direccion: values.direccion,
+      departamento: values.departamento,
+      ciudad: values.ciudad,
+      productos: [{ "codigo": 1, "nombre": "frutas" }]
+    }
+    if (values.tipoUsuario === "Exportador") {
+      if (values.Frutas)
+        params.productos.push({ codigo: 1, nombre: "frutas" })
+      else if (values.Verduras)
+        params.productos.push({ codigo: 2, nombre: "verduras" })
+      else if (values.Granos)
+        params.productos.push({ codigo: 3, nombre: "granos" })
+      else if (values.Otros)
+        params.productos.push({ codigo: 4, nombre: "otros" })
+
+
+      this.props.registerProducer(params)
+    }
+    else {
+      this.props.registerCompradores(params)
+    }
+
     //this.props.getProducers()//.then(resp => console.log("resp", resp))
     /*fetch(`${domain}${"api/v1/productores"}`).then(resp => resp.json()).then(data => {
       console.log("fata", data)
     }).catch(error => console.log("errror", error))*/
-    //console.log("registro", values);
-    //this.props.registerProducer(values)
+
   };
   options() {
     if (this.state.login)
@@ -171,6 +203,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = dispatch => {
   return {
     registerProducer: obj => dispatch(registerProducer(obj)),
+    registerCompradores: obj => dispatch(registerCompradores(obj)),
     getProducers: params => dispatch(getProducers(params))
   };
 };

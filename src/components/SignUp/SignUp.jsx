@@ -11,7 +11,7 @@ import Button from "components/CustomButton/CustomButton.jsx";
 import Card from "components/Card/Card";
 import { Row, Col } from "react-bootstrap";
 const dataIdentificacion = ["Cedula de ciudadania", "Tarjeta de Identidad"];
-const datatipoUser = ["Exportador ", "Comprador"];
+const datatipoUser = ["Exportador", "Comprador"];
 class SignUp extends Component {
   constructor(props, state) {
     super(props, state);

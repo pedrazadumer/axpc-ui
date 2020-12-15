@@ -14,16 +14,16 @@ class Login extends Component {
     this.onSubmitLogin = this.onSubmitLogin.bind(this);
   }
   onSubmitLogin(values) {
-    console.log("values", values);
+    console.log("values login", values);
     return sleep(1000).then(() => {
       // simulate server latency
       if (values) {
-        if (!["john", "paula", "george", "ringo"].includes(values.username)) {
+        /*if (!["john", "paula", "george", "ringo"].includes(values.username)) {
           throw new SubmissionError({
             username: "User does not exist",
             _error: "Login failed!",
           });
-        } else if (values.password !== "redux-form") {
+        } else*/ if (values.username && values.password !== "redux-form") {
           throw new SubmissionError({
             password: "Wrong password",
             _error: "Login failed!",
