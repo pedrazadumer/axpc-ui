@@ -12,7 +12,7 @@ import Footer from "components/Footer/Footer";
 import dashboardRoutes from "routes/index.jsx";
 import { Row, Col } from "react-bootstrap";
 import { reduxForm } from "redux-form";
-var { domain } = window
+import Modal from "helpers/Modal";
 //const ClickableField = loadable(() => import('components/ClickableField'))
 class Authentication extends Component {
   constructor(props, state) {
@@ -98,18 +98,39 @@ class Authentication extends Component {
     if (values.tipoUsuario === "Exportador") {
       if (values.Frutas)
         params.productos.push({ codigo: 1, nombre: "frutas" })
-      else if (values.Verduras)
+      if (values.Verduras)
         params.productos.push({ codigo: 2, nombre: "verduras" })
-      else if (values.Granos)
+      if (values.Granos)
         params.productos.push({ codigo: 3, nombre: "granos" })
-      else if (values.Otros)
+      if (values.Otros)
         params.productos.push({ codigo: 4, nombre: "otros" })
 
 
       this.props.registerProducer(params)
+      this.setState(
+        {
+          titleModal: "Bienvenido",
+          contentModal: "La cuenta fue creada Exitosamente"
+        },
+        (_) => setTimeout(this.modal.handleShow(),
+          2000
+        )
+      );
+      this.switchAuthentication()
     }
     else {
       this.props.registerCompradores(params)
+
+      this.setState(
+        {
+          titleModal: "Bienvenido",
+          contentModal: "La cuenta fue creada Exitosamente"
+        },
+        (_) => setTimeout(this.modal.handleShow(),
+          2000
+        )
+      );
+      this.switchAuthentication()
     }
 
     //this.props.getProducers()//.then(resp => console.log("resp", resp))
@@ -121,7 +142,7 @@ class Authentication extends Component {
   options() {
     if (this.state.login)
       return (
-        <div style={{ minHeight: "76vh" }}>
+        <div style={{ minHeight: "70vh" }}>
           <Row>
             <Col md={1}></Col>
             <Col md={4}>
@@ -180,6 +201,14 @@ class Authentication extends Component {
           style={{ backgroundColor: "#3366cc", height: "60px" }}
           brandText={this.getBrandText(this.props.location.pathname)}
           switchAuthentication={this.switchAuthentication}
+        />
+        <Modal
+          ref={(modal) => (this.modal = modal)}
+          title={this.state.titleModal}
+          content={<p>{this.state.contentModal}</p>}
+          error={this.state.error}
+          history={this.props.history}
+          showFooter
         />
         <div style={{ marginLeft: "5%" }}>
           <h4> Bienvenido a AgroExportaciones para Colombia</h4>

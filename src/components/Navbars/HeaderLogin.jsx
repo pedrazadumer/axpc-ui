@@ -51,7 +51,7 @@ class HeaderLogin extends Component {
             src="../../Images/logoGob.png"
             height="60px"
             width="300"
-            paddingTop="5px"
+            paddingtop="5px"
           />
           <Navbar.Toggle onClick={this.mobileSidebarToggle} />
         </Navbar.Header>

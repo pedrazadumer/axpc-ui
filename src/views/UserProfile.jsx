@@ -16,6 +16,7 @@
 
 */
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import {
   Grid,
   Row,
@@ -38,6 +39,7 @@ import {
 } from "helpers/widgets";
 import avatar from "assets/img/faces/face-3.jpg";
 import Modal from "helpers/Modal";
+import { getProducers, getCompradores } from "actions/clientsAction";
 const dataIdentificacion = ["Cedula de ciudadania", "Tarjeta de Identidad"];
 const datatipoUser = ["Exportador ", "Comprador"];
 class UserProfile extends Component {
@@ -60,6 +62,18 @@ class UserProfile extends Component {
       firstname: "Paula",
       lastname: "Salazar"
     })
+    this.props.getProducers()
+    this.props.getCompradores() //.then(response => console.log("Producers", response))
+
+  }
+  componentDidUpdate(prevProps) {
+    console.log("this.props.user did Update", this.props.user)
+    if (this.props.user && prevProps.user && prevProps.user.producers !== this.props.user.producers && this.props.user.producers && this.props.user.producers.length > 0) {
+      var actual = this.props.user.producers.filter(e => e.usuario === this.props.user.userName)
+      console.log("actual", actual)
+      if (actual && actual.length > 0)
+        this.props.setUserData(actual[0])
+    }
   }
   tipoUsuario(val) {
     if (val.includes("Exportador")) {
@@ -129,6 +143,7 @@ class UserProfile extends Component {
   }
   render() {
     const { error, handleSubmit, pristine, submitting, valid } = this.props;
+    const usuario = this.props.user.actualUserInfo
     return (
       <div className="content">
         <Spinner spin={this.state.loading} />
@@ -141,6 +156,22 @@ class UserProfile extends Component {
           showFooter
         />
         <Grid fluid style={{ marginBottom: "3%" }}>
+          <Row>
+            <Col md={12}>
+              <Card
+                title="Resumen de mis datos"
+                content={
+                  <div>
+                    <p>Usuario: {usuario.usuario}</p>
+                    <p>Nombre: {usuario.nombre}</p>
+                    <p>Tipo identificación: {usuario.tipoIdentificacion}</p>
+                    <p>Num Identificación:  {usuario.identificacion}</p>
+                    <p>Correo: {usuario.correo}</p>
+
+                  </div>
+                } />
+            </Col>
+          </Row>
           <Row>
             <Col md={12}>
               <Card
@@ -396,10 +427,18 @@ class UserProfile extends Component {
     );
   }
 }
+const mapStateToProps = ({ user }) => ({ user });
+
+const mapDispatchToProps = (dispatch) => ({
+  getProducers: _ => dispatch(getProducers()),
+  getCompradores: _ => dispatch(getCompradores()),
+  setUserData: obj => dispatch({ type: 'SET_USER_DATA', payload: obj })
+  //login: user => dispatch(logon(user)),
+});
 
 // Decorate the form component
 UserProfile = reduxForm({
   form: "userProfile", // a unique name for this form
 })(UserProfile);
 
-export default UserProfile;
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

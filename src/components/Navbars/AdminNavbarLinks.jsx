@@ -16,6 +16,7 @@
 
 */
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
 
 class AdminNavbarLinks extends Component {
@@ -69,7 +70,7 @@ class AdminNavbarLinks extends Component {
             <MenuItem divider />
             <MenuItem eventKey={2.5}>Separated link</MenuItem>
           </NavDropdown>*/}
-          <NavItem>Paul</NavItem>
+          <NavItem> {this.props.user.userName}</NavItem>
           <NavItem eventKey={3} href="/login">
             Salir
           </NavItem>
@@ -78,5 +79,9 @@ class AdminNavbarLinks extends Component {
     );
   }
 }
-
-export default AdminNavbarLinks;
+const mapStateToProps = ({ user }) => ({ user });
+const mapDispatchToProps = (dispatch) => ({
+  //getProducers: _ => dispatch(getProducers())
+  //login: user => dispatch(logon(user)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(AdminNavbarLinks);

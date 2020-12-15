@@ -23,12 +23,14 @@ class Login extends Component {
             username: "User does not exist",
             _error: "Login failed!",
           });
-        } else*/ if (values.username && values.password !== "redux-form") {
+        } else*/
+        if (values.username && values.password !== "redux-form") {
           throw new SubmissionError({
             password: "Wrong password",
             _error: "Login failed!",
           });
         } else {
+          this.props.setUsername(values.username)
           this.props.history.push("/admin/user");
           // window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
         }
@@ -118,6 +120,7 @@ const validate = ({ username, password }) => {
 const mapStateToProps = ({ user }) => ({ user });
 
 const mapDispatchToProps = (dispatch) => ({
+  setUsername: name => dispatch({ type: "SET_USERNAME", payload: name })
   //login: user => dispatch(logon(user)),
 });
 // Decorate with redux-form
